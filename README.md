@@ -16,6 +16,13 @@ A modern and user-friendly shopping application built with **Jetpack Compose**, 
 - **Settings Screen** *(Coming Soon)*  
   Personalize your shopping experience with customizable preferences and account settings.
 
+## 📱 Screenshots
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/439421ff-0c0e-43fd-a0b7-32df18c3e456" alt="Home Screen" width="45%"/>
+  <img src="https://github.com/user-attachments/assets/555ee04b-b056-4ff5-bb43-8a73eaecbb90" alt="Product Screen" width="45%"/>
+</p>
+
 ## 🛠️ Built With
 
 - **Jetpack Compose**: Modern UI toolkit for building native Android interfaces.
@@ -26,5 +33,7 @@ A modern and user-friendly shopping application built with **Jetpack Compose**, 
 - User Authentication
 - Payment Integration
 - Wishlist and Favorites
+
+
 
 Stay tuned—more features and enhancements are on the way! 🚀
