@@ -15,6 +15,18 @@ A modern and user-friendly shopping application built with **Jetpack Compose**, 
 
 - **Settings Screen** *(Coming Soon)*  
   Personalize your shopping experience with customizable preferences and account settings.
+## 📂 Data Structure
+
+The app uses JSON files stored in Dropbox for dynamic content management:
+
+- `categories.json`: Contains product categories and metadata.
+- `slides.json`: Holds promotional slides for the home screen.
+- `StoreContent.json`: Main data file for product details and descriptions.
+
+## Libraries 
+- **Retrofit**: Type-safe HTTP client for API communication
+- **ViewModel & Lifecycle**: Android Architecture Components for managing UI data
+- **Haze**: Beautiful blur and visual effects for enhanced UI
 
 ## 📱 Screenshots
 
