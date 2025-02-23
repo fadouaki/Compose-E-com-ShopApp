@@ -22,13 +22,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
 import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.LocalTextStyle
@@ -145,13 +146,13 @@ fun Home_Screen(
             Box(
                 modifier = Modifier
                     .padding(
-                        start = 44.dp,
-                        end = 44.dp,
-                        bottom = 65.dp,
+                        start = 20.dp,
+                        end = 20.dp,
+                        bottom = 50.dp,
                         top = 4.dp
                     )
                     .fillMaxWidth()
-                    .height(64.dp)
+                    .height(50.dp)
                     .hazeChild(state = hazeState, shape = CircleShape)
                     .border(
                         width = Dp.Hairline,
@@ -171,10 +172,9 @@ fun Home_Screen(
                         selectedTabIndex = tabs.indexOf(it)
                         when (it) {
                             BottomBarTab.Home -> Home_navController.navigate("main_screen")
-                            BottomBarTab.Search -> Home_navController.navigate("search_screen")
+                            BottomBarTab.Coupon -> Home_navController.navigate("coupon_screen")
                             BottomBarTab.Settings -> Home_navController.navigate("settings_screen")
                         }
-                        Log.d("takii", "selectedTabIndex $selectedTabIndex")
                     }
                 )
                 val animatedSelectedTabIndex by animateFloatAsState(
@@ -185,7 +185,6 @@ fun Home_Screen(
                         dampingRatio = Spring.DampingRatioLowBouncy,
                     )
                 )
-
                 val animatedColor by animateColorAsState(
                     targetValue = tabs[selectedTabIndex].color,
                     label = "animatedColor",
@@ -252,8 +251,9 @@ fun NavigationGraph(
         composable("settings_screen") {
             SettingActivity(hazeState)
         }
-        composable("search_screen") {
-            SearchActivity(hazeState)
+        composable("coupon_screen") {
+            CouponActivity(hazeState,
+                paddingValues)
         }
         composable("main_screen") {
             HomePreview(
@@ -331,9 +331,9 @@ fun HomePreview(
 }
 
 sealed class BottomBarTab(val title: String, val icon: ImageVector, val color: Color) {
-    data object Search : BottomBarTab(
-        title = "Search",
-        icon = Icons.Rounded.Search,
+    data object Coupon : BottomBarTab(
+        title = "Coupons",
+        icon = Icons.Rounded.ShoppingCart,
         color = Color(0xFFFFA574)
     )
 
@@ -351,7 +351,7 @@ sealed class BottomBarTab(val title: String, val icon: ImageVector, val color: C
 }
 
 val tabs = listOf(
-    BottomBarTab.Search,
+    BottomBarTab.Coupon,
     BottomBarTab.Home,
     BottomBarTab.Settings,
 )
@@ -364,13 +364,13 @@ fun BottomBarTabs(
 ) {
     CompositionLocalProvider(
         LocalTextStyle provides LocalTextStyle.current.copy(
-            fontSize = 12.sp,
+            fontSize = 10.sp,
             fontWeight = FontWeight.Medium,
         ),
         LocalContentColor provides Color.White
     ) {
         Row(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxWidth(),
         ) {
             for (tab in tabs) {
                 val alpha by animateFloatAsState(
@@ -400,7 +400,9 @@ fun BottomBarTabs(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                 ) {
-                    Icon(imageVector = tab.icon, contentDescription = "tab ${tab.title}")
+                    Icon(imageVector = tab.icon,
+                        modifier = Modifier.size(20.dp),
+                        contentDescription = "tab ${tab.title}")
                     Text(text = tab.title)
                 }
             }

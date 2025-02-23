@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -40,9 +41,10 @@ import dev.chrisbanes.haze.HazeState
 import dev.chrisbanes.haze.haze
 
 @Composable
-fun SearchActivity(hazeState: HazeState) {
+fun CouponActivity(hazeState: HazeState, paddingValues: PaddingValues) {
     Column(
         modifier = Modifier
+            .padding(paddingValues)
             .fillMaxSize()
             .haze(
                 hazeState,
@@ -119,11 +121,6 @@ fun SearchActivity(hazeState: HazeState) {
     }
 }
 
-@Preview
-@Composable
-fun PreviewSearch() {
-    SearchActivity(hazeState = HazeState())
-}
 
 @Preview
 @Composable

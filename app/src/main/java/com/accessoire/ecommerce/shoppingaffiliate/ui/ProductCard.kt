@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -25,8 +23,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -34,47 +30,47 @@ import com.accessoire.ecommerce.shoppingaffiliate.Model.ProdutStore.dataProductM
 
 @Composable
 fun ProductCard(
-    dataProduct : dataProductModelItem,
-    onClickAtProduct : () -> Unit,
+    dataProduct: dataProductModelItem,
+    onClickAtProduct: () -> Unit,
 ) {
     Card(
         modifier = Modifier
-            .padding(5.dp)
+            .padding(2.dp)
             .width(200.dp)
-            .height(270.dp)
+            .height(230.dp)
             .clickable {
                 onClickAtProduct()
             },
         shape = RoundedCornerShape(8.dp)
     ) {
         Column(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier.padding(8.dp),
 
-        ) {
+            ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(
-                      dataProduct.image[0]
+                        dataProduct.image[0]
                     )
                     .crossfade(true)
                     .build(),
                 contentDescription = dataProduct.title,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
-                    .size(150.dp)
+                    .height(150.dp)
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally)
-                    .clip(RoundedCornerShape(8.dp)),
+                    .clip(RoundedCornerShape(4.dp)),
                 onState = { state ->
 
                 }
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 modifier = Modifier.weight(1f),
-                text =dataProduct.title,
+                text = dataProduct.title,
                 style = MaterialTheme.typography.bodyMedium,
-                maxLines = 2,
+                maxLines = 1,
             )
             Spacer(modifier = Modifier.height(4.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -83,7 +79,7 @@ fun ProductCard(
                         imageVector = Icons.Default.Star,
                         contentDescription = "Star",
                         tint = Color(0xFFFFA000),
-                        modifier =  Modifier.size(10.dp)
+                        modifier = Modifier.size(10.dp)
                     )
                 }
                 Spacer(modifier = Modifier.width(4.dp))
@@ -95,7 +91,7 @@ fun ProductCard(
                     color = Color.Gray
                 )
             }
-            Spacer(modifier = Modifier.height(8.dp))
+            Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "\$ ${dataProduct.price}",
                 style = MaterialTheme.typography.titleSmall,
