@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -35,6 +36,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.chrisbanes.haze.HazeState
@@ -120,6 +122,11 @@ fun CouponActivity(hazeState: HazeState, paddingValues: PaddingValues) {
         }
     }
 }
+@Preview
+@Composable
+fun CouponActivityPreview() {
+    CouponActivity(HazeState(), PaddingValues(0.dp))
+}
 
 
 @Preview
@@ -129,13 +136,13 @@ fun cardProduct() {
         modifier = Modifier
             .padding(5.dp)
             .width(200.dp)
-            .height(200.dp)
+            .height(190.dp)
             .clickable {
                 // onClickAtProduct()
             },
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(0.dp),
         colors = CardColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainer,
+            containerColor = MaterialTheme.colorScheme.background,
             contentColor = Color.Black,
             disabledContentColor = Color.LightGray,
             disabledContainerColor = Color.Black,
@@ -144,7 +151,7 @@ fun cardProduct() {
         Box {
             Column(
                 modifier = Modifier
-                    .padding(8.dp)
+                    .padding(4.dp)
                     .fillMaxWidth(),
                 verticalArrangement = Arrangement.Center
             ) {
@@ -152,26 +159,38 @@ fun cardProduct() {
                     painter = painterResource(id = R.drawable.product), contentDescription = "",
                     contentScale = ContentScale.FillBounds,
                     modifier = Modifier
-                        .size(150.dp)
+                        .height(150.dp)
+                        .fillMaxWidth()
                         .align(Alignment.CenterHorizontally)
-                        .clip(RoundedCornerShape(8.dp)),
+                        .clip(RoundedCornerShape(0.dp)),
                 )
                 Spacer(
                     modifier = Modifier
-                        .height(8.dp)
+                        .height(4.dp)
                         .fillMaxWidth()
                 )
                 Text(
                     modifier = Modifier
                         .weight(1f)
-                        .align(Alignment.CenterHorizontally),
+                        .align(Alignment.Start),
                     text = "back cartable product",
-                    style = MaterialTheme.typography.titleSmall,
-                    maxLines = 2,
+                    style = MaterialTheme.typography.labelSmall,
+                    maxLines = 1,
+                )
+                Text(
+                    modifier = Modifier
+                        .weight(1f)
+                        .align(Alignment.Start),
+                    text = "23 \$",
+                    style = MaterialTheme.typography.labelSmall.copy(
+                        textDecoration = TextDecoration.LineThrough
+                    ),
+                    color = Color.Red,
+                    maxLines = 1,
                 )
             }
             Text(
-                text = " Offer   12\$ ",
+                text = " Offer only 12\$ ",
                 color = Color.White,
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.Bold,
@@ -183,8 +202,9 @@ fun cardProduct() {
                             topStart = CornerSize(0), bottomStart = CornerSize(0)
                         )
                     )
-                    .padding(5.dp)
+                    .padding(end = 5.dp, top = 3.dp, bottom = 3.dp)
             )
+
         }
 
     }
@@ -211,7 +231,7 @@ fun CouponCard() {
                 modifier = Modifier
                     .size(130.dp)
                     .clip(
-                        RoundedCornerShape(8.dp).copy(
+                        RoundedCornerShape(0.dp).copy(
                             bottomStart = CornerSize(0), topStart = CornerSize(0)
                         )
                     ),
